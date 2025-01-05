@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import dotenv from "dotenv";
 import { connectDB } from "../config/db.js";
 import {
@@ -11,9 +12,16 @@ import {
 const app = express();
 dotenv.config();
 
+const PORT = process.env.PORT || 4000;
+
+const __dirname = path.resolve();
+
 app.get("/", (req, res) => {
-  //send html template as response
-  res.send(`<div><h1> Welcome to the Products API </h1> <h2>This API has been developed by C2S.</h2></div>`);
+  //send documentation.html template file as a response.
+    res.sendFile("documentation.html", { root: __dirname });
+
+  
+
 });
 
 app.use(express.json());

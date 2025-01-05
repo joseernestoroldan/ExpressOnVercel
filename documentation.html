@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management API Documentation</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 5px;
+        }
+        .endpoint {
+            font-weight: bold;
+        }
+        .method {
+            padding: 2px 5px;
+            border-radius: 3px;
+            color: white;
+            margin-right: 5px;
+        }
+        .get { background-color: green; }
+        .post { background-color: blue; }
+        .put { background-color: orange; }
+        .delete { background-color: red; }
+        .param {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Product Management API Documentation</h1>
+    <h2>This api has been developed by C2S</h2>
+
+    <p>This documentation outlines the functionalities of the Product Management API, which interacts with a MongoDB database. All endpoints use JSON for data exchange.</p>
+
+    <h2>Endpoints</h2>
+
+    <section>
+        <h3><span class="method get">GET</span> <span class="endpoint">/api/products</span></h3>
+        <p>Retrieves a list of all products stored in the database.</p>
+        <h4>Response (200 OK)</h4>
+        <pre><code>[
+  {
+    "id": "12345",
+    "name": "T-Shirt",
+    "description": "Comfortable cotton t-shirt",
+    "price": 19.99
+  },
+  {
+    "id": "67890",
+    "name": "Laptop",
+    "description": "High-performance laptop for work and gaming",
+    "price": 899.99
+  }
+]</code></pre>
+    </section>
+
+    <section>
+        <h3><span class="method post">POST</span> <span class="endpoint">/api/products</span></h3>
+        <p>Creates a new product and inserts it into the database.</p>
+        <h4>Request Body</h4>
+        <pre><code>{
+  "name": "Coffee Mug",
+  "description": "Durable ceramic mug with cool design",
+  "price": 9.99
+}</code></pre>
+        <h4>Response (201 Created)</h4>
+        <pre><code>{
+  "id": "abcdef",
+  "name": "Coffee Mug",
+  "description": "Durable ceramic mug with cool design",
+  "price": 9.99
+}</code></pre>
+                <h4>Response (400 Bad Request)</h4>
+                <p>Returned if the request body is invalid.</p>
+
+    </section>
+
+    <section>
+        <h3><span class="method put">PUT</span> <span class="endpoint">/api/products/<span class="param">:id</span></span></h3>
+        <p>Modifies an existing product based on its unique identifier (<span class="param">id</span>).</p>
+        <h4>Request Body</h4>
+        <pre><code>{
+  "name": "Laptop (Updated)",
+  "description": "High-performance laptop with upgraded graphics card",
+  "price": 999.99
+}</code></pre>
+        <h4>Response (200 OK)</h4>
+        <pre><code>{
+  "id": "67890",
+  "name": "Laptop (Updated)",
+  "description": "High-performance laptop with upgraded graphics card",
+  "price": 999.99
+}</code></pre>
+                <h4>Response (400 Bad Request)</h4>
+                <p>Returned if the request body is invalid.</p>
+                <h4>Response (404 Not Found)</h4>
+        <p>Returned if the product with the specified <span class="param">id</span> is not found.</p>
+    </section>
+
+    <section>
+        <h3><span class="method delete">DELETE</span> <span class="endpoint">/api/products/<span class="param">:id</span></span></h3>
+        <p>Deletes a product from the database based on its unique identifier (<span class="param">id</span>).</p>
+        <h4>Response (204 No Content)</h4>
+        <p>Returned upon successful deletion.</p>
+                <h4>Response (404 Not Found)</h4>
+        <p>Returned if the product with the specified <span class="param">id</span> is not found.</p>
+    </section>
+
+</body>
+</html>
