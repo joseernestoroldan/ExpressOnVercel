@@ -15,10 +15,13 @@ dotenv.config();
 const PORT = process.env.PORT || 4000;
 
 const __dirname = path.resolve();
+console.log(__dirname)
 
 app.get("/", (req, res) => {
-  //send documentation.html template file as a response.
-    res.sendFile("documentation.html", { root: __dirname });
+  //send documentation.html template file as a response that is in the api folder.
+    res.sendFile(path.join(__dirname, "api", "documentation.html"));
+
+   
 
   
 
