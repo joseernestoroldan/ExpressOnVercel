@@ -1,15 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "../config/db.js";
-import productRoutes from "./routes/products.route.js";
+// import productRoutes from "./routes/products.route.js";
+import { getAllProducts } from "./controllers/products.controller.js";
 
 
 const app = express();
 dotenv.config();
 
-app.get("/", (req, res) => {
-  res.send("Express on Vercel");
-});
+app.get("/api/products", getAllProducts);
 
 connectDB().then(() => {
   app.listen(4000, () => {
